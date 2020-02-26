@@ -1,4 +1,5 @@
 <section th:fragment="sidebar">
+<th:block th:if="${#authorization.expression('hasRole(''ROLE_USER'')') OR #authorization.expression('hasRole(''ROLE_ADMIN'')') OR #authorization.expression('hasRole(''ROLE_OFFICE'')')}">
 	<!-- Left Sidebar -->
 	<aside id="leftsidebar" class="sidebar">
 		<!-- User Info -->
@@ -178,5 +179,5 @@
 
 	</aside>
 	<!-- #END# Left Sidebar -->
-
+</th:block>
 </section>

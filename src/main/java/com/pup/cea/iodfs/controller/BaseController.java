@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pup.cea.iodfs.model.UserInfo;
 import com.pup.cea.iodfs.service.DocumentService;
 import com.pup.cea.iodfs.service.NotificationService;
+import com.pup.cea.iodfs.service.TypeService;
 import com.pup.cea.iodfs.service.UserInfoService;
 
 
@@ -46,6 +47,8 @@ public class BaseController {
 	UserInfoService userInfoService;
 	@Autowired
 	NotificationService notificationService;
+	@Autowired
+	TypeService typeService;
 	
 	private Authentication auth;
 	private UserInfo userInfo;
@@ -130,7 +133,14 @@ public class BaseController {
 	public String logoutSuccess() {
 		return "redirect:/login";
 	}
-
+	@RequestMapping("/track")
+	public String trackDocuments(Model model) {
+		
+		model.addAttribute("documentList",docService.findAll());
+		model.addAttribute("typeList",typeService.findAll());
+		
+		return "trackDocuments";
+	}
 	
 	
 }
